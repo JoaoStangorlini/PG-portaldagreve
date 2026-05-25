@@ -49,6 +49,20 @@ export const ROOT_DOCUMENTS: RootDocument[] = [
     fileUrl: "/Documentos PG (Portal da greve)/IFUSP/Emails enviados/Resposta do Comando de greve ao email da direção do IFUSP.zip",
     destaque: true,
     description: "Resposta oficial do comando de greve à direção do IFUSP."
+  },
+  {
+    title: "Nota sobre o email da direção",
+    slug: "ifusp/emails-enviados/nota-sobre-o-email-da-direcao",
+    fileUrl: "/Documentos PG (Portal da greve)/IFUSP/Emails enviados/Nota sobre o email da direção/Nota sobre o email da direção.pdf",
+    destaque: true,
+    description: "Nota explicativa sobre o Conselho de Graduação e o email alarmista da direção."
+  },
+  {
+    title: "Repasse da negociação",
+    slug: "ifusp/reunioes/repasse-da-negociacao",
+    fileUrl: "/Documentos PG (Portal da greve)/IFUSP/Reuniões/repasse da negociação/repasse da negociação.pdf",
+    destaque: true,
+    description: "Repasse da reunião de negociação com a reitoria do dia 21/05."
   }
 ];
 
@@ -60,6 +74,16 @@ export const DIRECTORY_DATA: DirectoryData = {
         {
           title: "Resposta do Comando de Greve ao email da direção do IFUSP",
           href: "/documentos/ifusp/emails-enviados/resposta-do-comando-de-greve"
+        },
+        {
+          title: "Nota sobre o email da direção",
+          href: "/documentos/ifusp/emails-enviados/nota-sobre-o-email-da-direcao"
+        }
+      ],
+      "Reuniões": [
+        {
+          title: "Repasse da negociação",
+          href: "/documentos/ifusp/reunioes/repasse-da-negociacao"
         }
       ]
     }

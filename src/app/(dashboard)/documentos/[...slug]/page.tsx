@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Reference } from "@/components/ReferenceTooltip";
-import { FileCheck, Calendar, Users, PenTool, Link as LinkIcon, AlertTriangle } from "lucide-react";
+import { FileCheck, Calendar, Users, PenTool, Link as LinkIcon, AlertTriangle, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import fs from "fs";
 import path from "path";
@@ -138,6 +138,10 @@ const DOCUMENT_MAP: Record<string, { key: string; title: string; filePath?: stri
     title: "Reuniões com a Kaline",
     filePath: "IFUSP/Reuniões/Reuniões com a kaline.md"
   },
+  "ifusp/reunioes/repasse-da-negociacao": {
+    key: "repasse-da-negociacao",
+    title: "Repasse da negociação"
+  },
   "manuais-de-greve/geral/read-me": {
     key: "read-me",
     title: "READ-ME: Manuais de greve",
@@ -152,6 +156,10 @@ const DOCUMENT_MAP: Record<string, { key: string; title: string; filePath?: stri
   "ifusp/emails-enviados/resposta-do-comando-de-greve": {
     key: "resposta-do-comando-de-greve",
     title: "Resposta do Comando de Greve ao email da direção do IFUSP"
+  },
+  "ifusp/emails-enviados/nota-sobre-o-email-da-direcao": {
+    key: "nota-sobre-o-email-da-direcao",
+    title: "Nota sobre o email da direção"
   }
 };
 
@@ -1005,7 +1013,226 @@ function RespostaComandoContent() {
   );
 }
 
+function NotaEmailDirecaoContent() {
+  return (
+    <>
+      {/* Top Banner Alert */}
+      <div className="mb-8 p-5 bg-red-500/10 border border-red-500/30 rounded-2xl flex items-start gap-4">
+        <div className="w-10 h-10 rounded-xl bg-red-500/20 flex items-center justify-center shrink-0">
+          <AlertTriangle className="text-red-500" size={24} />
+        </div>
+        <div>
+          <h4 className="text-red-200 font-bold text-base mb-1">SOBRE O E-MAIL DA DIRETORIA: NÃO CAIAM NO TERROR</h4>
+          <p className="text-sm text-gray-300 leading-relaxed">
+            A Diretoria do IFUSP emitiu dizendo que, se a greve continuar, os calouros perderão o vínculo com a USP. Precisamos de calma e de informação porque o que aconteceu ontem, 21/05, no Conselho de Graduação (CoG) desmente diretamente esse tom alarmista.
+          </p>
+        </div>
+      </div>
 
+      <SectionTitle id="acontecimentos-cog">O QUE ACONTECEU NO CoG DE ONTEM (21/05)</SectionTitle>
+      <p className="text-gray-400 text-sm mb-6 italic">Sessão extraordinária de 4 horas, das 14h em diante.</p>
+
+      <div className="space-y-4 mb-8">
+        <div className="flex gap-4 bg-[#1a1f2e] p-5 rounded-lg border border-gray-800">
+          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">1</div>
+          <div>
+            <p className="text-gray-200 font-semibold mb-1">Pauta do Calendário de 2027 e Debate sobre 2026/1</p>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Estava em pauta o calendário de 2027. O prof. Girotto (Geografia) pediu o adiamento, com o argumento de que não faz sentido aprovar 2027 sem antes tratar deste semestre, atravessado pela greve. A representação estudantil reforçou a necessidade de discutir readequação do calendário e abono de faltas já para 2026/1, apresentando pareceres favoráveis de diversos CGs e notas de direções de unidades nesse sentido. A inclusão dessa pauta havia sido formalmente solicitada e negada. Marcos Neira suprimiu as demais falas e adiou a pauta.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex gap-4 bg-[#1a1f2e] p-5 rounded-lg border border-gray-800">
+          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">2</div>
+          <div>
+            <p className="text-gray-200 font-semibold mb-1">Convocação de CoG Extraordinário</p>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              A PRG confirmou, em sessão, que a negociação em mediação, realizada em 21/05, encaminhou a convocação de um CoG extraordinário, após o fim da greve, para tratar especificamente da readequação do calendário acadêmico de 2026. Essa foi a tônica geral da sessão.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex gap-4 bg-[#1a1f2e] p-5 rounded-lg border border-gray-800">
+          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">3</div>
+          <div>
+            <p className="text-gray-200 font-semibold mb-1">Deliberação da Greve pelos Estudantes</p>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Marcos Neira afirmou que <strong className="text-white">"o fim ou não da greve é decidido pelos estudantes"</strong> e que, após a próxima reunião de negociação (25/05), sairá nota imediata da PRG sobre o que for tratado.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex gap-4 bg-[#1a1f2e] p-5 rounded-lg border border-gray-800">
+          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">4</div>
+          <div>
+            <p className="text-gray-200 font-semibold mb-1">Falas de Apoio dos Professores</p>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Quase 3h da sessão foram tomadas por falas de professores de diversas unidades defendendo a greve em tons variados, do conciliatório (FAU) ao incisivo (o próprio CG do IF afirmou que a reitoria já perdeu o apoio estudantil e, se seguir assim, perde também o docente). A única fala abertamente contrária à greve foi a do CG da Poli (prof. Kurokawa).
+            </p>
+          </div>
+        </div>
+
+        <div className="flex gap-4 bg-[#1a1f2e] p-5 rounded-lg border border-gray-800">
+          <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold shrink-0">5</div>
+          <div>
+            <p className="text-gray-200 font-semibold mb-1">Exigência de Apoio Público e Repúdio a Violência</p>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              A maioria dos professores que se pronunciaram exigiu da CoG e da PRG uma nota pública de apoio à greve e de repúdio à violência policial, lembrando a velocidade com que a reitoria respondeu à ocupação. A PRG ignorou.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <SectionDivider />
+
+      <SectionTitle id="porque-importa">POR QUE ISSO IMPORTA DIANTE DO E-MAIL DA DIRETORIA</SectionTitle>
+
+      <div className="space-y-6 mb-16">
+        <div className="flex items-start gap-4 p-5 rounded-xl border border-gray-800 bg-gray-900/30">
+          <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center text-secondary font-bold shrink-0">1</div>
+          <div>
+            <h4 className="font-semibold text-white mb-2">Não existe portaria jubilando calouro</h4>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              O que existe é um comunicado da PRG (03/2026) que reproduz trecho do regimento sobre reprovação por falta no primeiro semestre. Para qualquer calouro perder vínculo, a USP teria que reprovar todo mundo por falta e o próprio Pró-Reitor de Graduação já se comprometeu, em sessão de CoG, a convocar reunião extraordinária para rever o calendário. <strong className="text-white">Não há cenário institucional em que se jubile uma turma inteira.</strong>
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-4 p-5 rounded-xl border border-gray-800 bg-gray-900/30">
+          <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center text-secondary font-bold shrink-0">2</div>
+          <div>
+            <h4 className="font-semibold text-white mb-2">Quem delibera calendário é o CoG</h4>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              A competência institucional para deliberação do calendário acadêmico é do Conselho de Graduação (CoG), não da Diretoria da unidade. E o CoG já está com a readequação encaminhada como pauta de sessão extraordinária.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-start gap-4 p-5 rounded-xl border border-gray-800 bg-gray-900/30">
+          <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center text-secondary font-bold shrink-0">3</div>
+          <div>
+            <h4 className="font-semibold text-white mb-2">Opção pelo caminho oposto ao da própria PRG</h4>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Enquanto reitoria e estudantes negociam, e enquanto professores de diversas unidades exigiam ontem (21/05) nota de apoio à greve, a Diretoria do IFUSP optou por mandar e-mail de pressão e desinformação aos calouros.
+            </p>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function RepasseNegociacaoContent() {
+  return (
+    <>
+      {/* Top Banner Alert / Info */}
+      <div className="mb-8 p-5 bg-primary/10 border border-primary/30 rounded-2xl flex items-start gap-4">
+        <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center shrink-0 text-primary">
+          <Users size={24} />
+        </div>
+        <div>
+          <h4 className="text-primary font-bold text-base mb-1">REPASSE DA NEGOCIAÇÃO — FORMATO DA MESA (21/05)</h4>
+          <p className="text-sm text-gray-300 leading-relaxed">
+            Dado ser uma reunião de negociação em processo de mediação, não está mais previsto subir os 18 negociadores na mesa com a reitoria. Inicialmente propuseram 3 na sala e 15 em sala ao lado, mas garantimos a entrada de <strong className="text-white">6 na sala de negociação</strong> e os demais 12 acompanhando via transmissão. Esse modelo permite rotacionar membros internamente e realizar pausas estratégicas.
+          </p>
+        </div>
+      </div>
+
+      <SectionTitle id="propostas-gerais">Propostas da Reitoria</SectionTitle>
+      <p className="text-gray-300 leading-relaxed mb-6">
+        A reitoria inicialmente não formulou nada de novo desde o comunicado de fechamento da mesa, apenas repetindo o que constava nas memórias anteriores. Após pressão da comissão de negociação, as seguintes propostas foram pautadas:
+      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        {/* Não retaliação */}
+        <div className="p-6 bg-gradient-to-br from-gray-900 to-[#121824] rounded-2xl border border-gray-800 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center gap-2 mb-4 text-secondary font-bold uppercase text-xs tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-secondary" />
+              Não Retaliação & Faltas
+            </div>
+            <h4 className="text-lg font-bold text-white mb-2">Abonos e Calendário</h4>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              A orientação de abonos e faltas é possível (tanto que a segunda portaria da PRG vai nesse sentido), mas existe a dificuldade de garantir que 100% dos docentes sigam a medida, dependendo de trabalho nas Unidades.
+            </p>
+          </div>
+          <p className="text-xs text-gray-400 mt-4 border-t border-gray-800/50 pt-3 italic">
+            Compromisso de convocar Conselho de Graduação Extraordinário pós-greve para rever o calendário acadêmico de 2026.
+          </p>
+        </div>
+
+        {/* GT Orçamento */}
+        <div className="p-6 bg-gradient-to-br from-gray-900 to-[#121824] rounded-2xl border border-gray-800 flex flex-col justify-between">
+          <div>
+            <div className="flex items-center gap-2 mb-4 text-primary font-bold uppercase text-xs tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-primary" />
+              GT de Orçamento
+            </div>
+            <h4 className="text-lg font-bold text-white mb-2">Planejamento PAPFE</h4>
+            <p className="text-sm text-gray-300 leading-relaxed">
+              Há o compromisso de estruturar um Grupo de Trabalho (GT) de Orçamento para viabilizar o aumento de repasse e auxílio do PAPFE a partir dos anos seguintes.
+            </p>
+          </div>
+          <p className="text-xs text-gray-400 mt-4 border-t border-gray-800/50 pt-3 italic">
+            Foco no planejamento orçamentário de longo prazo para assistência estudantil.
+          </p>
+        </div>
+      </div>
+
+      <SectionDivider />
+
+      <SectionTitle id="papfe">Cenários Propostos para o PAPFE</SectionTitle>
+      <p className="text-gray-300 leading-relaxed mb-6">
+        Alegando parâmetros de sustentabilidade e a Lei de Responsabilidade Fiscal, a reitoria afirmou ser inviável aumentar o valor nominal do PAPFE com o orçamento atual sem retirar de outro investimento. Reconhecendo a necessidade, eles apresentarão <strong className="text-white">3 cenários</strong> na próxima rodada:
+      </p>
+
+      {/* Grid of 3 options */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+        <div className="p-5 bg-[#161a24] border border-gray-800 rounded-xl">
+          <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 font-bold mb-3">1</div>
+          <h4 className="font-semibold text-white text-sm mb-2">Cenário 1</h4>
+          <p className="text-gray-300 text-xs leading-relaxed">
+            Aumento do valor das bolsas acompanhado de uma <strong className="text-red-450">diminuição no número total</strong> de bolsistas.
+          </p>
+        </div>
+
+        <div className="p-5 bg-[#161a24] border border-gray-800 rounded-xl">
+          <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 font-bold mb-3">2</div>
+          <h4 className="font-semibold text-white text-sm mb-2">Cenário 2</h4>
+          <p className="text-gray-300 text-xs leading-relaxed">
+            Aumento do valor das bolsas com <strong className="text-red-450">redução do período de concessão</strong> do auxílio.
+          </p>
+        </div>
+
+        <div className="p-5 bg-[#161a24] border border-gray-800 rounded-xl">
+          <div className="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 font-bold mb-3">3</div>
+          <h4 className="font-semibold text-white text-sm mb-2">Cenário 3</h4>
+          <p className="text-gray-300 text-xs leading-relaxed">
+            Aumento do valor das bolsas retirando recursos diretamente da <strong className="text-red-450">verba geral das Unidades</strong>.
+          </p>
+        </div>
+      </div>
+
+      {/* Action Banner */}
+      <div className="mt-10 p-6 bg-gradient-to-r from-red-500/10 to-gray-900/50 rounded-2xl border border-red-500/20">
+        <h4 className="text-red-300 font-bold text-lg mb-2">Próxima Reunião & Ato</h4>
+        <p className="text-gray-300 leading-relaxed mb-6">
+          A próxima rodada está agendada para <strong className="text-white">segunda-feira (25/05) às 09:00</strong>.
+        </p>
+
+        <div className="flex items-center gap-4 p-4 bg-red-500/20 border border-red-500/30 rounded-xl">
+          <div className="w-10 h-10 rounded-full bg-red-500/30 flex items-center justify-center shrink-0 text-red-300">
+            <Calendar size={20} />
+          </div>
+          <p className="text-gray-200 font-medium text-sm">
+            <strong className="text-red-400">Ato com Concentração às 08h</strong>, em frente ao <strong className="text-white">InovaUSP</strong>. Participe e pressione por avanços reais!
+          </p>
+        </div>
+      </div>
+    </>
+  );
+}
 
 export default function DocumentoPage({ params }: { params: { slug: string[] } }) {
   const slugKey = params.slug.join("/");
@@ -1020,7 +1247,7 @@ export default function DocumentoPage({ params }: { params: { slug: string[] } }
   let markdownContent = null;
   if (entry.filePath) {
     try {
-      const fullPath = path.join(process.cwd(), 'public', 'Documentos PG', entry.filePath);
+      const fullPath = path.join(process.cwd(), 'public', 'Documentos PG (Portal da greve)', entry.filePath);
       markdownContent = fs.readFileSync(fullPath, 'utf8');
     } catch (e) {
       console.error("Error reading markdown file", e);
@@ -1079,6 +1306,8 @@ export default function DocumentoPage({ params }: { params: { slug: string[] } }
               {entry.key === "glossario" && <GlossarioGreveContent />}
               {entry.key === "a-semana-decisiva-da-greve" && <SemanaDecisivaContent />}
               {entry.key === "resposta-do-comando-de-greve" && <RespostaComandoContent />}
+              {entry.key === "nota-sobre-o-email-da-direcao" && <NotaEmailDirecaoContent />}
+              {entry.key === "repasse-da-negociacao" && <RepasseNegociacaoContent />}
 
               {![
                 "informacoes-sobre-a-greve",
@@ -1091,7 +1320,9 @@ export default function DocumentoPage({ params }: { params: { slug: string[] } }
                 "influencers-de-direita",
                 "glossario",
                 "a-semana-decisiva-da-greve",
-                "resposta-do-comando-de-greve"
+                "resposta-do-comando-de-greve",
+                "nota-sobre-o-email-da-direcao",
+                "repasse-da-negociacao"
               ].includes(entry.key) && (
                   <div className="py-16 mt-8 flex flex-col items-center text-center border border-dashed border-gray-800 rounded-2xl bg-gray-900/20">
                     <div className="w-16 h-16 rounded-full bg-gray-800/50 flex items-center justify-center mb-4">

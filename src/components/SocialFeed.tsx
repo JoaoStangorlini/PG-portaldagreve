@@ -5,12 +5,10 @@ import { Instagram, Play, ExternalLink, Heart, MessageCircle, X } from "lucide-r
 import { cn } from "@/lib/utils";
 
 const SOCIAL_POSTS: { id: string; link: string }[] = [
-  { id: "DYK8xG6yqwK", link: "https://www.instagram.com/reel/DYK8xG6yqwK/" },
-  { id: "DYLexv1DLqj", link: "https://www.instagram.com/p/DYLexv1DLqj/" },
-  { id: "DYLG6w8AMx_", link: "https://www.instagram.com/p/DYLG6w8AMx_/" },
-  { id: "DYJ61c0Frvf", link: "https://www.instagram.com/p/DYJ61c0Frvf/" },
-  { id: "DYKK88ng4Ld", link: "https://www.instagram.com/reel/DYKK88ng4Ld/" },
-  { id: "DYKM7uVA9Sv", link: "https://www.instagram.com/reel/DYKM7uVA9Sv/" }
+  { id: "DYQh6PuGHmP", link: "https://www.instagram.com/p/DYQh6PuGHmP/" },
+  { id: "DYpummaOhUJ", link: "https://www.instagram.com/p/DYpummaOhUJ/" },
+  { id: "DYs9g_QlEyO", link: "https://www.instagram.com/p/DYs9g_QlEyO/" },
+  { id: "DYJ61c0Frvf", link: "https://www.instagram.com/p/DYJ61c0Frvf/" }
 ];
 
 

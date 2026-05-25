@@ -110,6 +110,48 @@ const rawEvents: TimelineEvent[] = [
     title: "Assembleia Geral",
     description: "Assembleia geral de continuidade da greve.",
   },
+  {
+    dateStr: "10 Mai",
+    dateObj: new Date("2026-05-10T00:00:00"),
+    title: "Desocupação da Reitoria",
+    description: "Estudantes desocupam o prédio da reitoria.",
+  },
+  {
+    dateStr: "11 Mai",
+    dateObj: new Date("2026-05-11T00:00:00"),
+    title: "2º Ato do CRUESP",
+    description: "Segundo ato unificado em frente ao CRUESP.",
+  },
+  {
+    dateStr: "11 Mai",
+    dateObj: new Date("2026-05-11T00:00:00"),
+    title: "Assembleia Geral USP",
+    description: "Assembleia geral de estudantes da USP.",
+  },
+  {
+    dateStr: "14 Mai",
+    dateObj: new Date("2026-05-14T00:00:00"),
+    title: "Reunião do Comando",
+    description: "Reunião de articulação do comando de greve.",
+  },
+  {
+    dateStr: "20 Mai",
+    dateObj: new Date("2026-05-20T00:00:00"),
+    title: "Marcha ao Palácio",
+    description: "Marcha de mobilização dos estudantes até o Palácio dos Bandeirantes.",
+  },
+  {
+    dateStr: "21 Mai",
+    dateObj: new Date("2026-05-21T00:00:00"),
+    title: "Negociação (Mediada)",
+    description: "Reunião dos estudantes com a reitoria em processo de mediação.",
+  },
+  {
+    dateStr: "25 Mai",
+    dateObj: new Date("2026-05-25T00:00:00"),
+    title: "2ª Negociação (Mediada)",
+    description: "Segunda rodada de reuniões de negociação mediada.",
+  },
 ];
 
 export function PicketStatus() {
